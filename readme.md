@@ -2,6 +2,8 @@
 #### Test only with Zabbix v5.x and zabbix_agentd v1
 (Based on: https://serveradmin.ru/monitoring-sroka-deystviya-ssl-sertifikata-v-zabbix/)
 
+0. Default Nginx config: `/etc/nginx/nginx.conf`
+
 
 1. Install `crossplane` python package for nginx config (https://github.com/nginxinc/crossplane)
 
@@ -54,3 +56,8 @@
 
 8. Add `SSL Cert Expiration` template in host
 
+
+### Or script
+```
+curl -fsSL https://raw.githubusercontent.com/leshak/zabbix-ssl-nginx/master/install.sh | sudo bash -
+```
