@@ -1,4 +1,4 @@
-# Zabbix monitoring of SSL certificates from nginx config files
+# Zabbix monitoring SSL certificates from nginx config files
 #### Test only with Zabbix v5.x and zabbix_agentd v1
 (Based on: https://serveradmin.ru/monitoring-sroka-deystviya-ssl-sertifikata-v-zabbix/)
 
