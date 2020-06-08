@@ -57,7 +57,14 @@
 8. Add `SSL Cert Expiration` template in host
 
 
-### Or script
-```
-curl -fsSL https://raw.githubusercontent.com/leshak/zabbix-ssl-nginx/master/install.sh | sudo bash -
-```
+## Or 
+1. Install `crossplane` python package for nginx config (https://github.com/nginxinc/crossplane)
+
+    ```
+    pip install crossplane
+    ```
+
+2. One script
+    ```
+    curl -fsSL https://raw.githubusercontent.com/leshak/zabbix-ssl-nginx/master/install.sh | sudo bash -
+    ```
