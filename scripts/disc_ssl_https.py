@@ -28,7 +28,7 @@ if nginxConfig['config']:
 
                 if foundHttps and httpsDomain != None:
                     domainsList.append({
-                        "{#DOMAIN_HTTPS}": blk['args'][0]
+                        "{#DOMAIN_HTTPS}": httpsDomain
                     })
 
 
