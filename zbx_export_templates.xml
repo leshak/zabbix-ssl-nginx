@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.0</version>
+    <date>2020-06-08T18:13:39Z</date>
+    <groups>
+        <group>
+            <name>Templates</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>SSL Sert Expiration</template>
+            <name>SSL Sert Expiration</name>
+            <groups>
+                <group>
+                    <name>Templates</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>SSL</name>
+                </application>
+            </applications>
+            <discovery_rules>
+                <discovery_rule>
+                    <name>SSL HTTPS Discovery</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>ssl_https.discovery</key>
+                    <delay>300</delay>
+                    <filter>
+                        <conditions>
+                            <condition>
+                                <macro>{#DOMAIN_HTTPS}</macro>
+                                <value>.*</value>
+                                <formulaid>A</formulaid>
+                            </condition>
+                        </conditions>
+                    </filter>
+                    <lifetime>90d</lifetime>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>Certificate $1 expire</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>ssl_https.expire[{#DOMAIN_HTTPS}]</key>
+                            <delay>300</delay>
+                            <history>30d</history>
+                            <trends>180d</trends>
+                            <applications>
+                                <application>
+                                    <name>SSL</name>
+                                </application>
+                            </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{last()}&lt;7</expression>
+                                    <name>Certificate {#DOMAIN_HTTPS} expire less then 7 days</name>
+                                    <priority>HIGH</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+        </template>
+    </templates>
+</zabbix_export>
