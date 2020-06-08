@@ -3,17 +3,20 @@
 
 import crossplane
 import json
-nginxConfig = crossplane.parse('/etc/nginx/nginx.conf')
 
+NGINX_CONFIG_PATH = '/etc/nginx/nginx.conf'
 HTTPS_PORT = 'ssl'
 
+
 domainsList = []
+nginxConfig = crossplane.parse(NGINX_CONFIG_PATH)
 if nginxConfig['config']:
     for cfile in nginxConfig['config']:
         for parsed in cfile['parsed']:
-            foundHttps = False
-
             if 'block' in parsed:
+                foundHttps = False
+                httpsDomain = None
+
                 for blk in parsed['block']:
 
                     if blk['directive'] == 'listen':
@@ -21,9 +24,13 @@ if nginxConfig['config']:
                             foundHttps = True
 
                     if foundHttps and blk['directive'] == 'server_name' and len(blk['args']) > 0:
-                        domainsList.append({
-                            "{#DOMAIN_HTTPS}": blk['args'][0]
-                        })
+                        httpsDomain = blk['args'][0]
+
+                if foundHttps and httpsDomain != None:
+                    domainsList.append({
+                        "{#DOMAIN_HTTPS}": blk['args'][0]
+                    })
+
 
 print(json.dumps({
     'data': domainsList
