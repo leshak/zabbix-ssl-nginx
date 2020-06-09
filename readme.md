@@ -52,7 +52,7 @@
     ssl_https.expire[google.com]    [t|64]
     ```
 
-7. Import Zabbix template `zabbix_ssl_templates.xml`
+7. Import Zabbix template `Templates/zabbix_ssl_templates.xml`
 
 8. Add `SSL Cert Expiration` template in host
 
